@@ -1,6 +1,6 @@
 package com.eCommerce.controller;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
@@ -10,7 +10,6 @@ import org.hibernate.exception.ConstraintViolationException;
 
 import com.eCommerce.entity.Descuento;
 import com.eCommerce.entity.Regla;
-import com.eCommerce.entity.Usuario;
 
 
 @SuppressWarnings("finally")
@@ -39,7 +38,7 @@ public class ReglasController extends Connection {
 		try {
 			this.startEntityManagerFactory();
 			this.query = this.getEm().createNamedQuery("Regla.findAllToDay", Regla.class);
-			this.query.setParameter("fechaActual", new Date());
+			this.query.setParameter("fechaActual", new Date(new java.util.Date().getTime()));
 			return query.getResultList();
 		} catch (Exception e) {
 			
@@ -52,9 +51,9 @@ public class ReglasController extends Connection {
 		return null;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(new ReglasController().getAllToDayActive().size());
-	}
+//	public static void main(String[] args) {
+//		System.out.println(new ReglasController().getAllToDayActive().get(0).getNombre());
+//	}
 
 	
 	@Override

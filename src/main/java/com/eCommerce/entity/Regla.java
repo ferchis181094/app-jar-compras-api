@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name="reglas")
 @NamedQueries({ @NamedQuery(name = "Regla.findAll", query = "SELECT r FROM Regla r"),
-@NamedQuery(name = "Regla.findAllToDay", query = "SELECT r FROM Regla r WHERE r.fechaIni>=:fechaActual and r.fechaFin<=:fechaActual")
+@NamedQuery(name = "Regla.findAllToDay", query = "SELECT r FROM Regla r WHERE r.fechaFin>=:fechaActual")
 })
 public class Regla implements Serializable {
 	private static final long serialVersionUID = 1L;
