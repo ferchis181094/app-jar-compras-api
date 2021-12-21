@@ -1,0 +1,72 @@
+package com.eCommerce.controller;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public abstract class Connection {
+	private EntityManagerFactory entityManagerFactory = null;
+	private EntityManager em = null;
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void startEntityManagerFactory() {
+		if (entityManagerFactory == null) {
+			try {
+				entityManagerFactory = Persistence.createEntityManagerFactory("eCommerceJPA");
+				em = entityManagerFactory.createEntityManager();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void stopEntityManagerFactory() {
+		if (entityManagerFactory != null) {
+			if (entityManagerFactory.isOpen()) {
+				try {
+					entityManagerFactory.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			em.close();
+			entityManagerFactory = null;
+		}
+	}
+	
+	/**
+	 * This method will return a list of all the registers in a table. Each item in the list will be saved as an object
+	 * @return a list of all the registers in a table. Each item in the list will be saved as an object
+	 */
+	abstract public List<?> selectAll();
+	
+	/**
+	 * This method is used to select everything from one register, specified by the primary key
+	 * @param id primary key
+	 * @return an object which contains all the attributes(columns) of the chosen register
+	 */
+	abstract public Object selectRegister(String id);
+
+	/**
+	 * 
+	 * @param o object that needs updating
+	 */
+	abstract public void update(Object o);
+	
+	/**
+	 * 
+	 * @param o object to be deleted
+	 */
+	abstract public void delete(Object o);
+	
+	/**
+	 * 
+	 * @param o the object to be added
+	 */
+	abstract public void insert (Object o);
+}

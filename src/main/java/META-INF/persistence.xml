@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="eCommerceJPA"
+		transaction-type="RESOURCE_LOCAL">
+		<class>com.eCommerce.entity.Carrito</class>
+		<class>com.eCommerce.entity.Categoria</class>
+		<class>com.eCommerce.entity.Descuento</class>
+		<class>com.eCommerce.entity.Factura</class>
+		<class>com.eCommerce.entity.Producto</class>
+		<class>com.eCommerce.entity.Regla</class>
+		<class>com.eCommerce.entity.Usuario</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://sqlcomponentes.mysql.database.azure.com:3306/comida?useSSL=true" />
+			<property name="javax.persistence.jdbc.user"
+				value="sql_componentes" />
+			<property name="javax.persistence.jdbc.password"
+				value="componentes-2021" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
+		</properties>
+	</persistence-unit>
+</persistence>
